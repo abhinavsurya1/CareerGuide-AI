@@ -1,0 +1,94 @@
+{
+    "careers": [
+        {
+            "title": "Data Scientist",
+            "description": "Analyze and interpret complex data to help companies make decisions. Use statistical methods and machine learning to extract insights from data.",
+            "skills": ["Python", "Statistics", "Machine Learning", "Data Analysis", "SQL"],
+            "keywords": ["data", "analysis", "machine learning", "statistics", "python", "modeling"],
+            "resources": [
+                {
+                    "name": "Data Science Specialization",
+                    "url": "https://www.coursera.org/specializations/data-science"
+                },
+                {
+                    "name": "Data Science Path",
+                    "url": "https://www.youtube.com/playlist?list=PL2-dafEMk2A6QKz1mrk1uIGfHkC1zZ6UU"
+                }
+            ],
+            "level": "Intermediate",
+            "domain": "Technology"
+        },
+        {
+            "title": "Machine Learning Engineer",
+            "description": "Build and deploy machine learning models to solve business problems. Focus on productionizing ML solutions and optimizing model performance.",
+            "skills": ["Python", "TensorFlow/PyTorch", "MLOps", "Software Engineering", "Cloud Platforms"],
+            "keywords": ["machine learning", "deep learning", "ai", "python", "tensorflow", "pytorch"],
+            "resources": [
+                {
+                    "name": "Machine Learning Engineering for Production",
+                    "url": "https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops"
+                },
+                {
+                    "name": "ML Engineering Path",
+                    "url": "https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv"
+                }
+            ],
+            "level": "Advanced",
+            "domain": "Technology"
+        },
+        {
+            "title": "Quantitative Analyst",
+            "description": "Use mathematical models and statistical methods to inform trading and financial decisions. Develop quantitative strategies and risk models.",
+            "skills": ["Mathematics", "Statistics", "Python/R", "Financial Markets", "Risk Analysis"],
+            "keywords": ["finance", "quantitative", "trading", "mathematics", "statistics", "risk"],
+            "resources": [
+                {
+                    "name": "Quantitative Finance",
+                    "url": "https://www.coursera.org/specializations/quantitative-finance"
+                },
+                {
+                    "name": "Quant Trading Resources",
+                    "url": "https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv"
+                }
+            ],
+            "level": "Advanced",
+            "domain": "Finance"
+        },
+        {
+            "title": "Product Manager",
+            "description": "Lead product development from conception to launch. Work with cross-functional teams to deliver products that meet user needs and business goals.",
+            "skills": ["Product Strategy", "User Research", "Agile", "Data Analysis", "Communication"],
+            "keywords": ["product", "management", "strategy", "user experience", "agile", "leadership"],
+            "resources": [
+                {
+                    "name": "Product Management Certification",
+                    "url": "https://www.coursera.org/specializations/product-management"
+                },
+                {
+                    "name": "Product Management Path",
+                    "url": "https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv"
+                }
+            ],
+            "level": "Intermediate",
+            "domain": "Business"
+        },
+        {
+            "title": "UI/UX Designer",
+            "description": "Create intuitive and engaging user interfaces. Conduct user research and design user experiences that solve real problems.",
+            "skills": ["UI Design", "UX Research", "Figma/Sketch", "Prototyping", "User Testing"],
+            "keywords": ["design", "ui", "ux", "user experience", "interface", "prototyping"],
+            "resources": [
+                {
+                    "name": "UI/UX Design Specialization",
+                    "url": "https://www.coursera.org/specializations/ui-ux-design"
+                },
+                {
+                    "name": "UI/UX Design Path",
+                    "url": "https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv"
+                }
+            ],
+            "level": "Intermediate",
+            "domain": "Design"
+        }
+    ]
+} 
