@@ -314,6 +314,33 @@ export default function Home() {
                 </p>
               )}
               
+              {!userInput.trim() && (
+                <div className="mt-6 p-6 bg-gradient-to-r from-slate-700/50 to-slate-600/50 rounded-2xl border border-slate-500/40 max-w-2xl mx-auto">
+                  <h4 className="text-lg font-semibold mb-3 text-cyan-300">Ready to Discover Your Career Path?</h4>
+                  <p className="text-gray-300 text-sm mb-4">
+                    Our AI will analyze your input to find the perfect career matches. The more detailed you are, the better the recommendations!
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-400">✓</span>
+                      <span className="text-gray-400 text-sm">Skills & technologies</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-400">✓</span>
+                      <span className="text-gray-400 text-sm">Interests & passions</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-400">✓</span>
+                      <span className="text-gray-400 text-sm">Experience level</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-400">✓</span>
+                      <span className="text-gray-400 text-sm">Career goals</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
               {error && (
                 <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-2xl text-red-300">
                   {error}
@@ -464,6 +491,54 @@ export default function Home() {
                       </div>
                       <div className="text-gray-400">Careers Found</div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* No Results State */}
+            {!loading && !showHero && userInput.trim() && recommendations.length === 0 && (
+              <div className="bg-gradient-to-br from-slate-800/60 to-slate-700/60 backdrop-blur-lg rounded-3xl p-12 border border-slate-600/40 shadow-2xl text-center">
+                <div className="text-6xl mb-6">🔍</div>
+                <h3 className="text-3xl font-bold mb-4 text-red-300">No Matching Careers Found</h3>
+                <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                  We couldn't find any careers that match your current input. This might be because:
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-left">
+                  <div className="bg-slate-700/50 p-6 rounded-2xl border border-slate-500/40">
+                    <div className="text-2xl mb-3">💡</div>
+                    <h4 className="text-lg font-semibold mb-2 text-cyan-300">Try More Specific Input</h4>
+                    <p className="text-gray-400 text-sm">Include specific skills, technologies, or industries you're interested in</p>
+                  </div>
+                  <div className="bg-slate-700/50 p-6 rounded-2xl border border-slate-500/40">
+                    <div className="text-2xl mb-3">🎯</div>
+                    <h4 className="text-lg font-semibold mb-2 text-purple-300">Adjust Your Filters</h4>
+                    <p className="text-gray-400 text-sm">Try different domain preferences or career levels</p>
+                  </div>
+                  <div className="bg-slate-700/50 p-6 rounded-2xl border border-slate-500/40">
+                    <div className="text-2xl mb-3">🚀</div>
+                    <h4 className="text-lg font-semibold mb-2 text-green-300">Explore Related Fields</h4>
+                    <p className="text-gray-400 text-sm">Consider broader categories or related domains</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <button
+                    onClick={() => {
+                      setUserInput("");
+                      setDomain("");
+                      setLevel("");
+                      setRecommendations([]);
+                      setInputAnalysis({ skills: [], interests: [], experience: "", confidence: 0 });
+                    }}
+                    className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105"
+                  >
+                    Start Fresh
+                  </button>
+                  
+                  <div className="text-sm text-gray-400">
+                    💡 <strong>Pro tip:</strong> Try describing your interests more broadly, like "I enjoy working with data and technology" or "I'm creative and like solving problems"
                   </div>
                 </div>
               </div>

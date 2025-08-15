@@ -81,6 +81,74 @@ def recommend(req: RecommendationRequest):
         if req.min_confidence:
             recs = [(c, s) for c, s in recs if s >= req.min_confidence]
         
+        # If no results, try to provide fallback recommendations
+        if not recs:
+            # Try without level filter to get more options
+            if req.level:
+                recs = recommender.get_recommendations(
+                    req.user_input,
+                    top_n=req.top_n,
+                    domain=req.domain,
+                    level=None
+                )
+                if req.min_confidence:
+                    recs = [(c, s) for c, s in recs if s >= req.min_confidence]
+            
+            # If still no results, try without domain filter
+            if not recs and req.domain:
+                recs = recommender.get_recommendations(
+                    req.user_input,
+                    top_n=req.top_n,
+                    domain=None,
+                    level=req.level
+                )
+                if req.min_confidence:
+                    recs = [(c, s) for c, s in recs if s >= req.min_confidence]
+            
+            # If still no results, get general recommendations
+            if not recs:
+                recs = recommender.get_recommendations(
+                    req.user_input,
+                    top_n=req.top_n,
+                    domain=None,
+                    level=None
+                )
+                if req.min_confidence:
+                    recs = [(c, s) for c, s in recs if s >= req.min_confidence]
+        
+        # Ensure we have at least one beginner option if realistic
+        if recs and req.level != "Advanced":
+            beginner_careers = [(c, s) for c, s in recs if c['level'] == 'Beginner']
+            if not beginner_careers:
+                # Try to find a relevant beginner career
+                all_careers = recommender.get_all_careers()
+                beginner_options = [c for c in all_careers if c['level'] == 'Beginner']
+                
+                if beginner_options:
+                    # Find the most relevant beginner career
+                    user_embedding = recommender.model.encode([req.user_input])[0]
+                    beginner_embeddings = recommender.model.encode([
+                        f"{c['title']} {c['description']} {' '.join(c['keywords'])}" 
+                        for c in beginner_options
+                    ])
+                    similarities = recommender.cosine_similarity([user_embedding], beginner_embeddings)[0]
+                    
+                    best_beginner_idx = similarities.argmax()
+                    if similarities[best_beginner_idx] >= 0.2:  # Minimum relevance threshold
+                        best_beginner = beginner_options[best_beginner_idx]
+                        best_beginner_similarity = similarities[best_beginner_idx]
+                        
+                        # Add to recommendations if not already present
+                        if not any(c['title'] == best_beginner['title'] for c, _ in recs):
+                            recs.append((best_beginner, best_beginner_similarity))
+                            # Sort by similarity and take top_n
+                            recs.sort(key=lambda x: x[1], reverse=True)
+                            recs = recs[:req.top_n]
+        
+        # If still no results, return a helpful message
+        if not recs:
+            return []
+        
         # Enhance recommendations with additional insights
         enhanced_recs = []
         for career, similarity in recs:

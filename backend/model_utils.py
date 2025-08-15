@@ -54,4 +54,12 @@ class CareerRecommender:
     
     def get_all_levels(self):
         """Get list of all available career levels."""
-        return list(set(career['level'] for career in self.career_data)) 
+        return list(set(career['level'] for career in self.career_data))
+    
+    def get_all_careers(self):
+        """Get all career profiles."""
+        return self.career_data
+    
+    def cosine_similarity(self, embeddings1, embeddings2):
+        """Calculate cosine similarity between two sets of embeddings."""
+        return cosine_similarity(embeddings1, embeddings2) 
